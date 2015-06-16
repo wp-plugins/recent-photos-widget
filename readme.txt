@@ -33,7 +33,7 @@ None
 
 == Screenshots ==
 
-None
+1. Screenshot shows the widget with the rollover tooltip effect.
 
 == Changelog ==
 
