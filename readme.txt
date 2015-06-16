@@ -1,6 +1,6 @@
 === Recent photos widget ===
 Contributors: stigcq
-Donate link: http://www.stigcq.com/
+Donate link: http://www.stigcq.com/donate
 Tags: photos, widget
 Requires at least: 4.2
 Tested up to: 4.2.2
@@ -16,7 +16,8 @@ A plugin offering a widget showing recent photos in posts. It can be configured
 as for how many photos to show, the title on the widget and max width and height for
 thumbnails. 
 
-The thumbnails links to the post where the photo is showing. 
+The thumbnails links to the post where the photo is showing. They show a mouse over
+effect with bigger version of the photo in a tooptip. 
 
 It has only been tested with WP 4.2, it might work with lower versions. 
 
