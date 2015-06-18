@@ -30,7 +30,11 @@ It has only been tested with WP 4.2, it might work with lower versions.
 
 == Frequently Asked Questions ==
 
-None
+= How to change the looks of tooltip? =
+
+The plugin contains a css file where f.x. border of tooltip default is black. You can
+change the look by editing this css. F.x. go to plugins, find the plugin, click edit,
+open the style.css, edit it and save it. 
 
 == Screenshots ==
 
