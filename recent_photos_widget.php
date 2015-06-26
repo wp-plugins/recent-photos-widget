@@ -6,7 +6,7 @@
   Description: Plugin for widget showing photos from posts
   Author: Stig Hansen
   Author URI: http://www.stigcq.com
-  Version: 1.0
+  Version: 1.1
   Copyright: © 2015 www.stigcq.com
 
  */
@@ -98,6 +98,9 @@ class wp_photo_widget_plugin extends WP_Widget {
 
                 $postParent = get_post($image->post_parent);
 
+                if($postParent->post_status != "publish")
+                    continue;
+                
                 $attachmenturl = wp_get_attachment_url($image->ID);
                 $attachmentimage = wp_get_attachment_image_src($image->ID, thumbnail);
                 $imageDescription = apply_filters('the_description', $image->post_content);

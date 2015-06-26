@@ -42,7 +42,9 @@ open the style.css, edit it and save it.
 
 == Changelog ==
 
-None
+= 1.1 =
+* Showing of rollover tooltip with bigger thumbnail
+
 
 == Upgrade Notice ==
 
