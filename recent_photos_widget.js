@@ -4,31 +4,31 @@
  */
 
 
-$( function()
+jQuery( function()
 {
-    var targets = $( '[rel~=tooltip]' ),
+    var targets = jQuery( '[rel~=tooltip]' ),
         target  = false,
         tooltip = false,
         title   = false;
  
     targets.bind( 'mouseenter', function()
     {
-        target  = $( this );
-        tip     = target.attr( 'title' );
-        tooltip = $( '<div id="tooltip"></div>' );
+        target  = jQuery( this );
+        tip     = target.attr( 'src' );
+        tooltip = jQuery( '<div id="tooltip"></div>' );
  
         if( !tip || tip == '' )
             return false;
  
         target.removeAttr( 'title' );
         tooltip.css( 'opacity', 0 )
-               .html( tip )
+               .html('<img src="' + tip + '"/>' )
                .appendTo( 'body' );
  
         var init_tooltip = function()
         {
-            if( $( window ).width() < tooltip.outerWidth() * 1.5 )
-                tooltip.css( 'max-width', $( window ).width() / 2 );
+            if( jQuery( window ).width() < tooltip.outerWidth() * 1.5 )
+                tooltip.css( 'max-width', jQuery( window ).width() / 2 );
             else
                 tooltip.css( 'max-width', 340 );
  
@@ -43,7 +43,7 @@ $( function()
             else
                 tooltip.removeClass( 'left' );
  
-            if( pos_left + tooltip.outerWidth() > $( window ).width() )
+            if( pos_left + tooltip.outerWidth() > jQuery( window ).width() )
             {
                 pos_left = target.offset().left - tooltip.outerWidth() + target.outerWidth() / 2 + 20;
                 tooltip.addClass( 'right' );
@@ -64,13 +64,13 @@ $( function()
         };
  
         init_tooltip();
-        $( window ).resize( init_tooltip );
+        jQuery( window ).resize( init_tooltip );
  
         var remove_tooltip = function()
         {
             tooltip.animate( { top: '-=10', opacity: 0 }, 50, function()
             {
-                $( this ).remove();
+                jQuery( this ).remove();
             });
  
             target.attr( 'title', tip );
