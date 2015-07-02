@@ -2,11 +2,11 @@
 /*
 
   Plugin Name: Recent photos widget
-  Plugin URI: http://www.stigcq.com/
+  Plugin URI: http://www.stigcq.com/donate
   Description: Plugin for widget showing photos from posts
   Author: Stig Hansen
   Author URI: http://www.stigcq.com
-  Version: 1.1
+  Version: 1.2
   Copyright: © 2015 www.stigcq.com
 
  */
@@ -90,11 +90,18 @@ class wp_photo_widget_plugin extends WP_Widget {
         if ($images = get_posts(array(
             'post_parent' => $post->ID,
             'post_type' => 'attachment',
-            'numberposts' => $showx,
+            'numberposts' => 20,
             'post_mime_type' => 'image',))) {
+            
+            $counter = 1;
+            
             foreach ($images as $image) {
                 if ($image->post_parent == 0)
                     continue;
+                
+                
+                if($counter > $showx)
+                    break;
 
                 $postParent = get_post($image->post_parent);
 
@@ -105,8 +112,17 @@ class wp_photo_widget_plugin extends WP_Widget {
                 $attachmentimage = wp_get_attachment_image_src($image->ID, thumbnail);
                 $imageDescription = apply_filters('the_description', $image->post_content);
                 $imageTitle = apply_filters('the_title', $image->post_title);
+		
+                $excl = get_post_meta( $image->ID, '_exclude_recent_photos', true ) ;
 
+		if($excl == 1)
+			continue; 
+                
+                
                     echo '<a href="' . get_permalink($image->post_parent) . '"><img rel="tooltip" title="Testing" style="max-width: ' . $maxwidth. 'px; max-height: ' . $maxheight . 'px; padding: 2px 2px 2px 2px" src="' . $attachmentimage[0] . '" alt="" /></a>';
+            
+                    $counter++;
+                
             }
         } else {
             echo "No photos";
@@ -126,5 +142,18 @@ add_action('widgets_init', create_function('', 'return register_widget("wp_photo
 wp_register_style('recent_photos_widget_css', plugins_url('style.css',__FILE__ ));
 wp_register_script( 'recent_photos_widget_js', plugins_url('recent_photos_widget.js',__FILE__ ));
 
+
+add_filter('attachment_fields_to_edit', 'edit_media_custom_field', 11, 2 );
+add_filter('attachment_fields_to_save', 'save_media_custom_field', 11, 2 );
+
+function edit_media_custom_field( $form_fields, $post ) {
+    $form_fields['custom_field'] = array( 'label' => 'Exclude recent photos', 'input' => 'text', 'value' => get_post_meta( $post->ID, '_exclude_recent_photos', true ) );
+    return $form_fields;
+}
+
+function save_media_custom_field( $post, $attachment ) {
+    update_post_meta( $post['ID'], '_exclude_recent_photos', $attachment['custom_field'] );
+    return $post;
+}
 
 ?>
