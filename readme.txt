@@ -19,6 +19,8 @@ thumbnails.
 The thumbnails links to the post where the photo is showing. They show a mouse over
 effect with bigger version of the photo in a tooptip. 
 
+It has option to exclude photos from the view. 
+
 It has only been tested with WP 4.2, it might work with lower versions. 
 
 
@@ -36,6 +38,9 @@ The plugin contains a css file where f.x. border of tooltip default is black. Yo
 change the look by editing this css. F.x. go to plugins, find the plugin, click edit,
 open the style.css, edit it and save it. 
 
+= How to exclude a photo? =
+Open media library, open the photo, insert 1 at the textfield for exclude recent photos
+
 == Screenshots ==
 
 1. Screenshot shows the widget with the rollover tooltip effect.
@@ -44,6 +49,10 @@ open the style.css, edit it and save it.
 
 = 1.1 =
 * Showing of rollover tooltip with bigger thumbnail
+
+= 1.2 =
+* Added option for excluding a photo
+
 
 
 == Upgrade Notice ==
