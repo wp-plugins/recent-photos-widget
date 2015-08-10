@@ -15,7 +15,7 @@ class wp_photo_widget_plugin extends WP_Widget {
 
     // constructor
     function wp_photo_widget_plugin() {
-        parent::WP_Widget("posts_photos_widget", $name = 'Show post photos widget');
+        parent::__construct("posts_photos_widget", $name = 'Show post photos widget');
     }
 
     // widget form creation
